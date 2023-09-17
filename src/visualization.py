@@ -57,7 +57,9 @@ def plot_results(df):
         alpha=0.5                
     )
 
+    plt.savefig("results.png", bbox_inches='tight')
     plt.show()
+
 
 
 if __name__ == "__main__":
