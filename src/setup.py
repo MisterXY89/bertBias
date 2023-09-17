@@ -19,6 +19,15 @@ random.seed(42)
 np.random.seed(42)
 torch.manual_seed(42)
 
+# Set device
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# Set paths
+BASE_DIR = f"{os.sep}".join(os.path.dirname(os.path.abspath(__file__)).split(f"{os.sep}")[:-1]) + f"{os.sep}"
+DATA_DIR = BASE_DIR + f"data{os.sep}"
+LOG_DIR = BASE_DIR + f"logs{os.sep}"
+
+
 # Set logging
 logging.basicConfig(format='[%(asctime)s] \t %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 logger = logging.getLogger(__name__)
@@ -26,16 +35,9 @@ logger.setLevel(logging.INFO)
 
 # save additional log file
 timestamp = pd.Timestamp.now().strftime("%Y-%m-%d_%H-%M-%S")
-fh = logging.FileHandler(f'run_{timestamp}.log')
+fh = logging.FileHandler(f'{LOG_DIR}/run_{timestamp}.log')
 fh.setLevel(logging.INFO)
 logger.addHandler(fh)
-
-# Set device
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-# Set paths
-BASE_DIR = f"{os.sep}".join(os.path.dirname(os.path.abspath(__file__)).split(f"{os.sep}")[:-1]) + f"{os.sep}"
-DATA_DIR = BASE_DIR + f"data{os.sep}"
 
 
 def get_all_models():
