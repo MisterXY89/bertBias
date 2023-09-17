@@ -13,7 +13,6 @@ except ModuleNotFoundError:
 def plot_results(df):    
     # remove heilman tests
     df = df[df["test"].str.contains("heilman") == False]    
-    df = df.drop(columns=["Unnamed: 0"])
 
     df.groupby(["model", "test"]).mean().reset_index().pivot(
         index="model", 
