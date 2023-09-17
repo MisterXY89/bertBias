@@ -1,14 +1,14 @@
 # TAKEN FROM:
 # https://github.com/W4ngatang/sent-bias/
-# This repository contains the code and data for the paper 
-# "On Measuring Social Biases in Sentence Encoders" 
+# This repository contains the code and data for the paper
+# "On Measuring Social Biases in Sentence Encoders"
 # by Chandler May, Alex Wang, Shikha Bordia, Samuel R. Bowman and Rachel Rudinger.
 #
 # I had to make some changes to get it to work with the latest versions of python and pytorch.
 # CHANGE:
-# `np.int` was a deprecated alias for the builtin `int`. 
-# To avoid this error in existing code, use `int` by itself. 
-# Doing this will not modify any behavior and is safe.   
+# `np.int` was a deprecated alias for the builtin `int`.
+# To avoid this error in existing code, use `int` by itself.
+# Doing this will not modify any behavior and is safe.
 # See: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
 
 
@@ -97,7 +97,7 @@ def p_val_permutation_test(X, Y, A, B, n_samples, cossims, parametric=False):
     ''' Compute the p-val for the permutation test, which is defined as
         the probability that a random even partition X_i, Y_i of X u Y
         satisfies P[s(X_i, Y_i, A, B) > s(X, Y, A, B)]
-    '''    
+    '''
     X = np.array(list(X), dtype=int)
     Y = np.array(list(Y), dtype=int)
     A = np.array(list(A), dtype=int)

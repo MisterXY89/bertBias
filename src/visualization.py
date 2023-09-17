@@ -10,13 +10,13 @@ except ModuleNotFoundError:
     from setup import logger, RESULTS_DIR
 
 
-def plot_results(df):    
+def plot_results(df):
     # remove heilman tests
-    df = df[df["test"].str.contains("heilman") == False]    
+    df = df[df["test"].str.contains("heilman") == False]
 
     df.groupby(["model", "test"]).mean().reset_index().pivot(
-        index="model", 
-        columns="test", 
+        index="model",
+        columns="test",
         values="effect_size"
     ).plot(
         kind="bar",
@@ -25,12 +25,12 @@ def plot_results(df):
         ylabel="Effect Size",
         xlabel="Model",
         rot=0,
-        colormap="Set2" 
+        colormap="Set2"
         # colormap="Accent"
     )
-    
+
     plt.legend(
-        loc='center left', 
+        loc='center left',
         bbox_to_anchor=(1.02, 0.5),
         ncol=1,
         fancybox=False,
@@ -46,9 +46,9 @@ def plot_results(df):
 
     # add horizontal line at 0
     plt.axhline(
-        y=0, 
-        color='black', 
-        linestyle='-', 
+        y=0,
+        color='black',
+        linestyle='-',
         linewidth=0.5
     )
 
@@ -58,7 +58,7 @@ def plot_results(df):
         color='gray',
         linestyle='-',
         linewidth=0.5,
-        alpha=0.5                
+        alpha=0.5
     )
 
     plt.savefig(f"{RESULTS_DIR}results.png", bbox_inches='tight')

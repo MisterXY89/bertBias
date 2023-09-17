@@ -25,7 +25,7 @@ class WSEAT(object):
 
         # load the model
         if not self.model:
-            logger.info(f"Loading model {self.hf_model_name}...")            
+            logger.info(f"Loading model {self.hf_model_name}...")
             self.model = Encoder(self.hf_model_name, load=True)
 
 
@@ -52,7 +52,7 @@ class WSEAT(object):
         eff_size, p_value = weat.run_test(encodings, n_samples=self.n_samples, parametric=self.parametric)
 
         logger.info(f"Effect size: {eff_size}")
-        logger.info(f"p-value: {p_value}")        
+        logger.info(f"p-value: {p_value}")
 
         results = {
             "model": self.hf_model_name,

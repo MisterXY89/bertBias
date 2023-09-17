@@ -26,7 +26,7 @@ if __name__ == "__main__":
     if model_name != "all":
         all_models = [model_name]
     if test != "all":
-        all_tests = [test]    
+        all_tests = [test]
 
     all_results = []
     for model_name in all_models:

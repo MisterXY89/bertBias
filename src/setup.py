@@ -59,7 +59,7 @@ def load_json(sent_file):
     for k, v in all_data.items():
         examples = v["examples"]
         data[k] = examples
-        v["examples"] = examples        
+        v["examples"] = examples
     return all_data  # data
 
 
@@ -82,5 +82,5 @@ def load_data_dict():
     """
     return {
         build_data_name(test_path): load_json(test_path) for test_path in glob.glob(f"{DATA_DIR}/*.jsonl")
-    }            
+    }
 
