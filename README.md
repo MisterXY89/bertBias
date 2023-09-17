@@ -40,7 +40,8 @@ The results are saved in the `results` directory. The results are saved in a csv
 - `effect size`: the effect size of the test
 
 <div align="center">
-![results](results/results_v1.png)
+
+![Results](results/results_v1.png)
 </div>
 
 ## License
