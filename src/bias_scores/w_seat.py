@@ -50,7 +50,7 @@ class WSEAT(object):
 
         # Run the test
         eff_size, p_value = weat.run_test(encodings, n_samples=self.n_samples, parametric=self.parametric)
-        
+
         logger.info(f"Effect size: {eff_size}")
         logger.info(f"p-value: {p_value}")        
 
@@ -76,43 +76,3 @@ class WSEAT(object):
         """
         logger.info("Results:")
         logger.info(results)
-
-
-
-
-
-# # load the test data
-# encs = load_json(os.path.join(args.data_dir, "%s%s" % (test, TEST_EXT)))
-
-
-# # load the model
-# elif model_name == ModelName.BERT.value:
-# model, tokenizer = bert.load_model(args.bert_version)
-# encs_targ1 = bert.encode(model, tokenizer, encs["targ1"]["examples"])
-# encs_targ2 = bert.encode(model, tokenizer, encs["targ2"]["examples"])
-# encs_attr1 = bert.encode(model, tokenizer, encs["attr1"]["examples"])
-# encs_attr2 = bert.encode(model, tokenizer, encs["attr2"]["examples"])
-
-# encs["targ1"]["encs"] = encs_targ1
-# encs["targ2"]["encs"] = encs_targ2
-# encs["attr1"]["encs"] = encs_attr1
-# encs["attr2"]["encs"] = encs_attr2
-
-# enc = [e for e in encs["targ1"]['encs'].values()][0]
-# d_rep = enc.size if isinstance(enc, np.ndarray) else len(enc)
-
-
-# # run the test on the encodings
-# log.info("Running SEAT...")
-# log.info("Representation dimension: {}".format(d_rep))
-# esize, pval = weat.run_test(encs, n_samples=args.n_samples, parametric=args.parametric)
-# results.append(dict(
-#     model=model_name,
-#     options=model_options,
-#     test=test,
-#     p_value=pval,
-#     effect_size=esize,
-#     num_targ1=len(encs['targ1']['encs']),
-#     num_targ2=len(encs['targ2']['encs']),
-#     num_attr1=len(encs['attr1']['encs']),
-#     num_attr2=len(encs['attr2']['encs'])))
