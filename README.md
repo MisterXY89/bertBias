@@ -14,8 +14,8 @@ Main changes:
         "distilbert-base-uncased"
     ]
     ```
-  - Adopt to latest Huggingface Transformers API + library versions (numpy, pandas, etc.)
-  - Add support for BERT-large
+- Adopt to latest Huggingface Transformers API + library versions (numpy, pandas, etc.)
+- Add support for BERT-large
 
 ## Setup
 Create a virtual environment and install the requirements:
