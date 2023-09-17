@@ -41,7 +41,7 @@ The results are saved in the `results` directory. The results are saved in a csv
 
 <div align="center">
 
-![Results](results/results_v1.png)
+![Results](results/results_v2.png)
 </div>
 
 ## License

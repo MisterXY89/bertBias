@@ -4,7 +4,7 @@ import numpy as np
 from tqdm import tqdm
 
 import torch
-from transformers import BertTokenizer, BertModel, AutoModelForMaskedLM, AutoConfig
+from transformers import AutoModel, AutoTokenizer, BertTokenizer, BertModel, AutoModelForMaskedLM, AutoConfig
 
 
 class Encoder(object):
@@ -26,10 +26,13 @@ class Encoder(object):
             output_hidden_states=True,
             return_dict=True
         )
-
-        self.tokenizer = BertTokenizer.from_pretrained(model_name)
-        # self.model = AutoModelForMaskedLM.from_pretrained(model_name, config=model_config)        
-        self.model = BertModel.from_pretrained(model_name, config=model_config)
+        
+        if self.hf_model_name.startswith("bert"):
+            self.model = BertModel.from_pretrained(model_name, config=model_config)
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+        else:
+            self.model = AutoModel.from_pretrained(model_name, config=model_config)
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 
         if torch.cuda.is_available():
             self.model = self.model.cuda()
