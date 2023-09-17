@@ -26,6 +26,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 BASE_DIR = f"{os.sep}".join(os.path.dirname(os.path.abspath(__file__)).split(f"{os.sep}")[:-1]) + f"{os.sep}"
 DATA_DIR = BASE_DIR + f"data{os.sep}"
 LOG_DIR = BASE_DIR + f"logs{os.sep}"
+RESULTS_DIR = BASE_DIR + f"results{os.sep}"
 
 
 # Set logging

@@ -4,6 +4,11 @@ import pandas as pd
 
 import matplotlib.pyplot as plt
 
+try:
+    from src.setup import logger, RESULTS_DIR
+except ModuleNotFoundError:
+    from setup import logger, RESULTS_DIR
+
 
 def plot_results(df):    
     # remove heilman tests
@@ -57,11 +62,11 @@ def plot_results(df):
         alpha=0.5                
     )
 
-    plt.savefig("results.png", bbox_inches='tight')
+    plt.savefig(f"{RESULTS_DIR}results.png", bbox_inches='tight')
     plt.show()
 
 
 
 if __name__ == "__main__":
-    df = pd.read_csv("results.csv")
+    df = pd.read_csv(f"{RESULTS_DIR}results_v1.csv")
     plot_results(df)

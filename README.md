@@ -39,7 +39,9 @@ The results are saved in the `results` directory. The results are saved in a csv
 - `p-value`: the p-value of the test
 - `effect size`: the effect size of the test
 
-![results](results.png)
+<div align="center">
+![results](results/results_v1.png)
+</div>
 
 ## License
 MIT License (see LICENSE file).

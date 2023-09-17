@@ -38,7 +38,7 @@ if __name__ == "__main__":
                 all_results.append(results)
 
     results_df = pd.DataFrame(all_results)
-    results_df.to_csv("results.csv")    
+    results_df.to_csv(f"{RESULTS_DIR}results.csv")    
     plot_results(results_df)
 
     # example
