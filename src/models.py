@@ -4,7 +4,7 @@ import numpy as np
 from tqdm import tqdm
 
 import torch
-from transformers import AutoTokenizer, AutoModelForMaskedLM, AutoConfig
+from transformers import BertTokenizer, BertModel, AutoModelForMaskedLM, AutoConfig
 
 
 class Encoder(object):
@@ -27,15 +27,16 @@ class Encoder(object):
             return_dict=True
         )
 
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.model = AutoModelForMaskedLM.from_pretrained(model_name, config=model_config)
+        self.tokenizer = BertTokenizer.from_pretrained(model_name)
+        # self.model = AutoModelForMaskedLM.from_pretrained(model_name, config=model_config)        
+        self.model = BertModel.from_pretrained(model_name, config=model_config)
 
         if torch.cuda.is_available():
             self.model = self.model.cuda()
         self.model.eval()
 
     
-    def encode(self, texts, label):
+    def __encode(self, texts, label):
         ''' Use tokenizer and model to encode texts '''
         logger.info(f"Encoding {label}...")
         encs = {}
@@ -51,28 +52,23 @@ class Encoder(object):
             hidden_states = output["hidden_states"]            
 
             # extract the last rep of the first input
-            embeds = hidden_states[0][:, 0, :]            
+            embeds = hidden_states[0][:, 0, :]    
 
             encs["text"] = embeds.detach().view(-1).numpy()
 
         return encs
 
+    def encode(self, texts, label):
+        """
+        Use tokenizer and model to encode texts
+        see also: https://github.com/huggingface/transformers/issues/1950
+        """
+        logger.info(f"Encoding {label}...")        
+        encs = {}
+        for text in tqdm(texts):
+            input_ids = torch.tensor(self.tokenizer.encode(text)).unsqueeze(0)  # Batch size 1            
+            outputs = self.model(input_ids)
+            last_hidden_states = outputs[0][:, 0, :]  # The last hidden-state is the first element of the output tuple            
+            encs[text] = last_hidden_states.detach().view(-1).numpy()
 
-# def encode(model, tokenizer, texts):
-#     ''' Use tokenizer and model to encode texts '''0
-#     embeddings = self.model.encode([sentence1, sentence2], convert_to_tensor=True)
-        
-#     embeddings1 = embeddings[0].unsqueeze(0)
-#     embeddings2 = embeddings[1].unsqueeze(0)
-#     encs = {}
-#     for text in texts:
-#         tokenized = tokenizer.tokenize(text)
-#         indexed = tokenizer.convert_tokens_to_ids(tokenized)
-#         segment_idxs = [0] * len(tokenized)
-#         tokens_tensor = torch.tensor([indexed])
-#         segments_tensor = torch.tensor([segment_idxs])
-#         enc, _ = model(tokens_tensor, segments_tensor, output_all_encoded_layers=False)
-
-#         enc = enc[:, 0, :]  # extract the last rep of the first input
-#         encs[text] = enc.detach().view(-1).numpy()
-#     return encs
+        return encs
