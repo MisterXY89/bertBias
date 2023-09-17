@@ -1,0 +1,87 @@
+{
+    "targ1": {
+      "concept": "M_term",
+      "singular": [
+        "male",
+        "man",
+        "boy",
+        "brother",
+        "he",
+        "him",
+        "his",
+        "son"
+      ],
+      "plural": [
+        "males",
+        "men",
+        "boys",
+        "brothers",
+        "sons"
+      ]
+    },
+    "targ2": {
+      "concept": "F_term",
+      "singular": [
+        "female",
+        "woman",
+        "girl",
+        "sister",
+        "she",
+        "her",
+        "hers",
+        "daughter"
+      ],
+      "plural": [
+        "females",
+        "women",
+        "girls",
+        "sisters",
+        "daughters"
+      ]
+    },
+    "attr1": {
+      "concept": "Career",
+      "singular": [
+        "executive",
+        "management",
+        "professional",
+        "corporation",
+        "salary",
+        "office",
+        "business",
+        "career"
+      ],
+      "plural": [
+        "executives",
+        "managements",
+        "corporations",
+        "salaries",
+        "offices",
+        "businesses",
+        "careers"
+      ]
+    },
+    "attr2": {
+      "concept": "Family",
+      "singular": [
+        "home",
+        "parent",
+        "child",
+        "family",
+        "cousin",
+        "marriage",
+        "wedding",
+        "relative"
+      ],
+      "plural": [
+        "homes",
+        "parents",
+        "children",
+        "families",
+        "cousins",
+        "marriages",
+        "weddings",
+        "relatives"
+      ]
+    }
+  }
