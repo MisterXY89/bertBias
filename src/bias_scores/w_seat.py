@@ -36,20 +36,6 @@ class WSEAT(object):
                 "encs": self.model.encode(inp_data[key]["examples"], key),
             })
 
-        # encodings.update({            
-        #         "encs": self.model.encode(inp_data["targ1"]["examples"], "targ1"),
-        #     },
-        #     "targ2": {
-        #         "encs": self.model.encode(inp_data["targ2"]["examples"], "targ2"),
-        #     },
-        #     "attr1": {
-        #         "encs": self.model.encode(inp_data["attr1"]["examples"], "attr1"),
-        #     },
-        #     "attr2": {
-        #         "encs": self.model.encode(inp_data["attr2"]["examples"], "attr2")
-        #     },
-        # })
-
         return encodings
 
     def run_wseat_test(self, inp_data, test, report=False):
@@ -64,6 +50,9 @@ class WSEAT(object):
 
         # Run the test
         eff_size, p_value = weat.run_test(encodings, n_samples=self.n_samples, parametric=self.parametric)
+        
+        logger.info(f"Effect size: {eff_size}")
+        logger.info(f"p-value: {p_value}")        
 
         results = {
             "model": self.hf_model_name,
