@@ -51,7 +51,7 @@ class Encoder(object):
             hidden_states = output["hidden_states"]            
 
             # extract the last rep of the first input
-            embeds = hidden_states[-1][:, 0, :]            
+            embeds = hidden_states[0][:, 0, :]            
 
             encs["text"] = embeds.detach().view(-1).numpy()
 
